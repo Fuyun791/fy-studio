@@ -1,0 +1,86 @@
+{
+  "description": "低码组件开发配置",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "选填, 组件唯一标识",
+      "maxLength": 214,
+      "minLength": 1,
+      "type": "string"
+    },
+    "events": {
+      "description": "选填, 组件可以被捕获的事件信息",
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/LCDS.IEvent"
+      }
+    },
+    "data": {
+      "description": "选填, 组件可以接收的数据, 用作组件props入参\n需要符合 JSON SCHEMA 规范",
+      "default": {},
+      "$schema": "https://comp-public-1303824488.cos.ap-shanghai.myqcloud.com/schema/schema#",
+      "$ref": "https://comp-public-1303824488.cos.ap-shanghai.myqcloud.com/schema/schema#"
+    },
+    "platforms": {
+      "description": "选填, 组件适配的平台\n\n如果该字段为空, 则进行智能推断",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "meta": {
+      "description": "可选, 仅用于在低码平台的信息展示",
+      "type": "object",
+      "properties": {
+        "title": {
+          "description": "选填, 组件别名, 建议用中文",
+          "type": "string"
+        },
+        "description": {
+          "description": "选填, 组件简介, 建议用中文",
+          "type": "string"
+        },
+        "icon": {
+          "description": "选填, 组件图标, 暂时只支持本地图片",
+          "type": "string"
+        },
+        "category": {
+          "description": "选填, 组件分类, 建议用中文",
+          "type": "string"
+        },
+        "componentOrder": {
+          "description": "选填, 组件的排序权重",
+          "minimum": 1,
+          "maximum": 10000,
+          "type": "number"
+        }
+      }
+    },
+    "extra": {
+      "description": "可选, 扩展字段, 尽量避免用"
+    },
+    "isContainer": {
+      "description": "可选, 是否容器组件\n\n容器可以包含子节点，但是不能配置插槽",
+      "type": "boolean"
+    }
+  },
+  "definitions": {
+    "LCDS.IEvent": {
+      "description": "低码组件可以被捕获的事件信息",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "必填, 用作抛出和捕获事件的唯一标识",
+          "type": "string"
+        },
+        "title": {
+          "description": "选填, 事件别名, 用于低码平台展示",
+          "type": "string"
+        }
+      },
+      "required": ["name", "title"]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
