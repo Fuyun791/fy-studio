@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import FyStudio from "@fy-studio-ui";
 
 import { HTML5Backend } from "react-dnd-html5-backend";
+import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 import { DndProvider } from "react-dnd";
+import Editor from "@monaco-editor/react";
 import LeftBox from "components/LeftBox";
+import ContainBox from "components/ContainBox";
 
-// import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 
 // import styles from "./index.less";
-const styles = {};
 
 // 指定画布的id
 let canvasId = "js_canvas";
@@ -19,23 +21,46 @@ const { Schema, DynamicEngine } = FyStudio;
 // const { TextSchema } = Schema;
 
 const Home: NextPage = (props) => {
+  const [dragState, setDragState] = useState({ x: 0, y: 0 });
+
+  // TODO: 暂时先写成数组,其实应该是已对象的模式向下渲染的
+  const [treeSchema, setTreeSchema] = useState<{ [key: string]: any }[]>([]);
+  const [curSchema, setCurSchema] = useState<{ [key: string]: any } | null>(
+    null
+  );
+
   const renderLeftSchema = () => {
     return Object.values(Schema).map((item) => {
-      const { meta } = item;
+      const { meta, properties } = item;
+
+      const attributes: { [key: string]: any } = {};
+      Object.keys(properties).forEach((key) => {
+        const { type, default: defaultValue } = properties[key];
+        switch (type) {
+          case "string":
+            attributes[key] = `${defaultValue}`;
+            break;
+          case "number":
+            attributes[key] = Number(defaultValue);
+            break;
+          default:
+            break;
+        }
+      });
       return (
-        <LeftBox item={meta} key={meta.id} canvasId={canvasId}>
+        <LeftBox item={item} key={meta.id} canvasId={canvasId}>
           <DynamicEngine
-            // {...value}
-            type={meta.id}
-            config={Schema[meta.id].config}
+            item={{ component: meta.id }}
             category="base"
             isTpl={true}
-            componentsType="base"
           />
         </LeftBox>
       );
     });
   };
+  function handleEditorChange(value, event) {
+    console.log("here is the current model value:", value);
+  }
   return (
     <div
       style={{
@@ -60,7 +85,7 @@ const Home: NextPage = (props) => {
             padding: 12,
           }}
         >
-          header
+          <span style={{ width: 100, textAlign: "center" }}>header</span>
         </div>
         <div
           id="container"
@@ -79,8 +104,23 @@ const Home: NextPage = (props) => {
             {/* <Text text="test 1" /> */}
             {renderLeftSchema()}
           </div>
-          <div id="context" style={{ flex: 1 }}>
-            context
+          <div
+            id="context"
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <ContainBox
+              dragState={dragState}
+              setDragState={setDragState}
+              treeSchema={treeSchema}
+              setTreeSchema={setTreeSchema}
+              setCurSchema={setCurSchema}
+              canvasId={canvasId}
+            />
           </div>
           <div
             id="right-component"
@@ -91,7 +131,16 @@ const Home: NextPage = (props) => {
               borderLeftStyle: "solid",
             }}
           >
-            right
+            {/* TODO: 实现右边栏和可复数加入容器 */}
+            <span> {curSchema !== null && JSON.stringify(curSchema)}</span>
+            <Editor
+              width="280px"
+              height="280px"
+              defaultLanguage="javascript"
+              defaultValue="// some comment"
+              onChange={handleEditorChange}
+              theme="vs-dark"
+            />
           </div>
         </div>
       </DndProvider>

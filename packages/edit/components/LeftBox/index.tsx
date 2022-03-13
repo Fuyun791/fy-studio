@@ -5,7 +5,7 @@ import styles from "./LeftBox.module.css";
 
 interface TargetBoxProps {
   // 这里接入描述类型
-  item: { id: string; h: number; x: number; category: string; title: string };
+  item: { meta: { [key: string]: any }; properties: { [key: string]: any } };
   children: ReactNode;
   canvasId: string;
 }
@@ -13,22 +13,34 @@ const { Schema } = FyStudio;
 
 const SourceBox = memo((props: TargetBoxProps) => {
   const { item } = props;
-  //   const [] = useDrag({
-  //     item: { type: item.type },
-  //   });
+  const { meta, properties } = item;
+
+  const attributes: { [key: string]: any } = {};
+  Object.keys(properties).forEach((key) => {
+    const { type, default: defaultValue } = properties[key];
+    switch (type) {
+      case "string":
+        attributes[key] = `${defaultValue}`;
+        break;
+      case "number":
+        attributes[key] = Number(defaultValue);
+        break;
+      default:
+        break;
+    }
+  });
   const [{ isDragging }, drag] = useDrag({
     type: "box",
     item: {
-      // type: item.type,
-      id: item.id,
-      config: Schema[item.id].config,
-      h: item.h,
-      editableEl: Schema[item.id].editData,
-      category: item.category,
-      x: item.x || 0,
+      component: meta.id,
+      attributes,
+      extra: {
+        commonStyle: {},
+      },
+      category: "base",
     },
     collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
+      isDragging: !!monitor.isDragging(),
     }),
   });
 
@@ -40,6 +52,7 @@ const SourceBox = memo((props: TargetBoxProps) => {
     }),
     [isDragging]
   );
+
   return (
     <div className={styles.listWrap}>
       <div className={styles.module} style={{ ...containerStyle }} ref={drag}>
@@ -64,7 +77,7 @@ const SourceBox = memo((props: TargetBoxProps) => {
             color: "rgba(118, 118, 118, 1)",
           }}
         >
-          {props.item.title}
+          {meta.title}
         </div>
       </div>
     </div>

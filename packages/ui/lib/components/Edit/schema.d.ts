@@ -1,4 +1,4 @@
-export interface ITextSchema {
+export interface IEditSchema {
     properties: {
         [key: string]: {
             title: string;
@@ -21,5 +21,5 @@ export interface ITextSchema {
         componentOrder: number;
     };
 }
-declare const Text: ITextSchema;
-export default Text;
+declare const Edit: IEditSchema;
+export default Edit;

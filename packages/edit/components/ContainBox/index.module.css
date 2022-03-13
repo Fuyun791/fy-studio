@@ -1,0 +1,16 @@
+.dragBox {
+  /* display: inline-block; */
+  border: 2px solid transparent;
+}
+
+.dragBox:hover {
+  border: 2px solid #06c;
+}
+
+.hover-handles .react-resizable-handle {
+  display: none;
+}
+
+.hover-handles:hover .react-resizable-handle {
+  display: block;
+}

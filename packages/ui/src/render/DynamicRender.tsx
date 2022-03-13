@@ -6,30 +6,30 @@ export type componentsType = "media" | "base" | "visible";
 
 type DynamicType = {
   isTpl: boolean;
-  config: Record<string, any>;
-  type: string;
-  componentsType: componentsType;
+  item: Record<string, any>;
   category: string;
 };
 
 const DynamicEngine = (props: DynamicType) => {
-  const { type, config, category, isTpl } = props;
+  const { item, category, isTpl } = props;
 
-  const temp = {
-    text: "@/components/Text",
-  };
+  // console.log("item", item);
+  const { attributes, extra } = item;
 
-  const OtherComponent = loadable(() => import("../components/Text"));
+  const OtherComponent = loadable(() => {
+    if (item.component === "Text") {
+      return import("../components/Text");
+    }
+  });
   // const OtherComponent = loadable(() => import("@/components/Text"));
 
   return (
-    <div>
-      <OtherComponent
-        {...config}
-        isTpl={isTpl}
-        fallback={<div>Loading...</div>}
-      />
-    </div>
+    <OtherComponent
+      attributes={attributes}
+      extra={extra}
+      isTpl={isTpl}
+      fallback={<div>Loading...</div>}
+    />
   );
 };
 

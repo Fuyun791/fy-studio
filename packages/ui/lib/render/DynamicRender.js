@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -36,14 +25,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var component_1 = __importDefault(require("@loadable/component"));
 var DynamicEngine = function (props) {
-    var type = props.type, config = props.config, category = props.category, isTpl = props.isTpl;
-    var temp = {
-        text: "@/components/Text",
-    };
-    var OtherComponent = component_1.default(function () { return Promise.resolve().then(function () { return __importStar(require("../components/Text")); }); });
+    var item = props.item, category = props.category, isTpl = props.isTpl;
+    // console.log("item", item);
+    var attributes = item.attributes, extra = item.extra;
+    var OtherComponent = component_1.default(function () {
+        if (item.component === "Text") {
+            return Promise.resolve().then(function () { return __importStar(require("../components/Text")); });
+        }
+    });
     // const OtherComponent = loadable(() => import("@/components/Text"));
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement(OtherComponent, __assign({}, config, { isTpl: isTpl, fallback: react_1.default.createElement("div", null, "Loading...") }))));
+    return (react_1.default.createElement(OtherComponent, { attributes: attributes, extra: extra, isTpl: isTpl, fallback: react_1.default.createElement("div", null, "Loading...") }));
 };
 exports.default = DynamicEngine;
 //# sourceMappingURL=DynamicRender.js.map

@@ -1,12 +1,13 @@
 export interface ITextSchema {
-  editData: { key: string; name: string; type: string; [key: string]: any }[];
-  config: {
-    text: string;
-    color: string;
-    fontSize: number;
-    align: string;
-    lineHeight: number;
+  properties: {
+    [key: string]: {
+      title: string;
+      default: string;
+      type: string;
+      [key: string]: any;
+    };
   };
+  events: { name: string; title: string; function: string }[];
   meta: {
     id: string;
     title: string;
@@ -17,27 +18,18 @@ export interface ITextSchema {
   };
 }
 const Text: ITextSchema = {
-  editData: [
-    {
-      key: "text",
-      name: "文字",
-      type: "Text",
+  properties: {
+    text: {
+      title: "文本内容",
+      type: "string",
+      default: "文本",
     },
-    {
-      key: "color",
-      name: "标题颜色",
-      type: "Color",
-    },
-    {
-      key: "fontSize",
-      name: "字体大小",
-      type: "Number",
-    },
-    {
-      key: "align",
-      name: "对齐方式",
-      type: "Select",
-      range: [
+    textAlign: {
+      title: "对齐方式",
+      type: "string",
+      default: "left",
+      xComponent: "radio",
+      enum: [
         {
           key: "left",
           text: "左对齐",
@@ -52,19 +44,15 @@ const Text: ITextSchema = {
         },
       ],
     },
-    {
-      key: "lineHeight",
-      name: "行高",
-      type: "Number",
-    },
-  ],
-  config: {
-    text: "我是文本",
-    color: "rgba(60,60,60,1)",
-    fontSize: 18,
-    align: "center",
-    lineHeight: 2,
   },
+  // 这个不应该是一个设置值,应该是一个传入使用的值
+  // extra: {
+  //   commonStyle: {
+  //      self: {}
+  //   },
+  // },
+  // 描述,用于左侧栏
+  events: [],
   meta: {
     id: "Text",
     title: "文本",

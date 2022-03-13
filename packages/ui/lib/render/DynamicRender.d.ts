@@ -2,9 +2,7 @@
 export declare type componentsType = "media" | "base" | "visible";
 declare type DynamicType = {
     isTpl: boolean;
-    config: Record<string, any>;
-    type: string;
-    componentsType: componentsType;
+    item: Record<string, any>;
     category: string;
 };
 declare const DynamicEngine: (props: DynamicType) => JSX.Element;

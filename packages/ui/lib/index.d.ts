@@ -5,9 +5,7 @@ declare const _default: {
     };
     DynamicEngine: (props: {
         isTpl: boolean;
-        config: Record<string, any>;
-        type: string;
-        componentsType: import("./render/DynamicRender").componentsType;
+        item: Record<string, any>;
         category: string;
     }) => JSX.Element;
 };
