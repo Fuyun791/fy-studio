@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export declare type componentsType = "media" | "base" | "visible";
 declare type DynamicType = {
     isTpl: boolean;

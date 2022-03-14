@@ -5,7 +5,7 @@ import FyStudio from "@fy-studio-ui";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 import { DndProvider } from "react-dnd";
-import Editor from "@monaco-editor/react";
+// import Editor from "@monaco-editor/react";
 import LeftBox from "components/LeftBox";
 import ContainBox from "components/ContainBox";
 
@@ -133,14 +133,14 @@ const Home: NextPage = (props) => {
           >
             {/* TODO: 实现右边栏和可复数加入容器 */}
             <span> {curSchema !== null && JSON.stringify(curSchema)}</span>
-            <Editor
+            {/* <Editor
               width="280px"
               height="280px"
               defaultLanguage="javascript"
               defaultValue="// some comment"
               onChange={handleEditorChange}
               theme="vs-dark"
-            />
+            /> */}
           </div>
         </div>
       </DndProvider>

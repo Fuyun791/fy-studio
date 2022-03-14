@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface ITextSchema {
     attributes: {
         text: string;
