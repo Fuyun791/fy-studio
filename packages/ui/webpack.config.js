@@ -1,7 +1,11 @@
 const path = require("path");
 
 module.exports = {
-  //   mode: "development",
+  externals: {
+    react: "react",
+    "react-dom": "react-dom",
+  },
+  mode: "development",
   entry: "./src/index.ts",
   watch: true,
   devtool: "source-map",
@@ -21,6 +25,7 @@ module.exports = {
     filename: "index.js",
     path: path.resolve(__dirname, "lib"),
     globalObject: "this",
+    umdNamedDefine: true,
     library: {
       name: "FyStudio",
       type: "umd",

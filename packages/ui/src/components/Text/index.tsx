@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
-// import styled from "styled-components";
+import React, { CSSProperties, useState } from "react";
+import styled from "styled-components";
 
 // import { ITextSchema } from "./schema";
 
@@ -15,6 +15,7 @@ interface ITextSchema {
 
 const Text = (props: ITextSchema) => {
   const { attributes, extra, isTpl } = props;
+  const [first, setfirst] = useState(123);
   if (isTpl) {
     return <div>Text Tpl</div>;
   }
@@ -23,10 +24,17 @@ const Text = (props: ITextSchema) => {
 
   const { width = 375, height = 40 } = extra.commonStyle;
 
+  const Temp = styled.button`
+    color: "gray";
+  `;
+
   return (
-    <span style={{ ...extra, width, height, textAlign, display: "block" }}>
-      {text}
-    </span>
+    <>
+      <span style={{ ...extra, width, height, textAlign, display: "block" }}>
+        {first}
+      </span>
+      <Temp />
+    </>
   );
 };
 export default Text;
