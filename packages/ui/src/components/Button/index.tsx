@@ -1,4 +1,5 @@
 import React, { CSSProperties } from "react";
+import { CommonHover } from "../CommonStyle";
 
 // import { ITextSchema } from "./schema";
 
@@ -20,8 +21,17 @@ const Button = (props: ITextSchema) => {
 
   const { text, textAlign } = attributes;
 
-  const { width = 375, height = 40 } = extra.commonStyle;
+  const { width = 160, height = 40 } = extra.commonStyle;
 
-  return <button style={{ ...extra, width, height }}>{text}</button>;
+  const realWidth = width > 160 ? 160 : width;
+  const realHeight = height > 40 ? 40 : height;
+
+  return (
+    <CommonHover isPreview={true}>
+      <button style={{ ...extra, width: realWidth, height: realHeight }}>
+        {text}
+      </button>
+    </CommonHover>
+  );
 };
 export default Button;

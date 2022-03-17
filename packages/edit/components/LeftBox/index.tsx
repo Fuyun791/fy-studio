@@ -68,7 +68,7 @@ const SourceBox = memo((props: TargetBoxProps) => {
         >
           {props.children}
         </div>
-        <div
+        {/* <div
           style={{
             height: "30px",
             lineHeight: "30px",
@@ -78,7 +78,7 @@ const SourceBox = memo((props: TargetBoxProps) => {
           }}
         >
           {meta.title}
-        </div>
+        </div> */}
       </div>
     </div>
   );

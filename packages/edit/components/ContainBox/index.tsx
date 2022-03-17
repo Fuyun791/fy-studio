@@ -126,41 +126,41 @@ const ContainBox = memo((props: SourceBoxProps) => {
                 const { extra } = item;
                 const { commonStyle } = extra;
                 return (
-                  <div
-                    onClick={() => {
-                      setCurSchema(item);
+                  <ResizableBox
+                    key={uuid(6, 10)}
+                    width={commonStyle.width || 375}
+                    height={commonStyle.height || 40}
+                    className={`${styles["hover-handles"]}`}
+                    draggableOpts={{}}
+                    onResizeStop={(_e, data) => {
+                      const {
+                        size: { width, height },
+                      } = data;
+                      const temp = _.cloneDeep(treeSchema);
+                      const oldCommonStyle = temp[index].extra.commonStyle;
+                      const cur = {
+                        ...temp[index],
+                        extra: {
+                          commonStyle: { ...oldCommonStyle, width, height },
+                        },
+                      };
+                      temp[index] = cur;
+                      setTreeSchema(temp);
+                      setCurSchema(cur);
                     }}
                   >
-                    <ResizableBox
-                      key={uuid(6, 10)}
-                      width={commonStyle.width || 375}
-                      height={commonStyle.height || 40}
-                      className={`${styles.dragBox} ${styles["hover-handles"]}`}
-                      draggableOpts={{}}
-                      onResizeStop={(_e, data) => {
-                        const {
-                          size: { width, height },
-                        } = data;
-                        const temp = _.cloneDeep(treeSchema);
-                        const oldCommonStyle = temp[index].extra.commonStyle;
-                        temp[index] = {
-                          ...temp[index],
-                          extra: {
-                            commonStyle: { ...oldCommonStyle, width, height },
-                          },
-                        };
-                        setTreeSchema(temp);
-                        setCurSchema(temp);
+                    <div
+                      onClick={() => {
+                        setCurSchema(item);
                       }}
-                      maxConstraints={[375, 675]}
                     >
                       <DynamicEngine
                         item={item}
                         category="base"
                         isTpl={false}
                       />
-                    </ResizableBox>
-                  </div>
+                    </div>
+                  </ResizableBox>
                 );
               })}
             </div>

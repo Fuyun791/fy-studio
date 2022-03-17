@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "yarn build -w",
-    "buildw": "webpack",
+    "buildw": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,6 +25,7 @@
     "@types/react-dom": "^17.0.13",
     "@types/react-loadable": "^5.5.6",
     "@types/styled-components": "^5.1.24",
+    "clean-webpack-plugin": "^4.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "ts-loader": "^9.2.8",
@@ -36,6 +37,6 @@
     "styled-components": "^5.3.3"
   },
   "peerDependencies": {
-    "react": "16.9.0"
+    "react": "17.0.2"
   }
 }

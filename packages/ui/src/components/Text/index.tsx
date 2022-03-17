@@ -1,5 +1,5 @@
-import React, { CSSProperties, useState } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { CommonHover } from "../CommonStyle";
 
 // import { ITextSchema } from "./schema";
 
@@ -22,19 +22,14 @@ const Text = (props: ITextSchema) => {
 
   const { text, textAlign } = attributes;
 
-  const { width = 375, height = 40 } = extra.commonStyle;
-
-  const Temp = styled.button`
-    color: "gray";
-  `;
+  const { width = 160, height = 40 } = extra.commonStyle;
 
   return (
-    <>
+    <CommonHover style={{}} isPreview={true}>
       <span style={{ ...extra, width, height, textAlign, display: "block" }}>
-        {first}
+        {text}
       </span>
-      <Temp />
-    </>
+    </CommonHover>
   );
 };
 export default Text;

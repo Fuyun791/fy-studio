@@ -5,13 +5,12 @@ import FyStudio from "@fy-studio-ui";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 import { DndProvider } from "react-dnd";
+import classNames from "classnames";
 // import Editor from "@monaco-editor/react";
 import LeftBox from "components/LeftBox";
 import ContainBox from "components/ContainBox";
 
 import styles from "../styles/Home.module.css";
-
-// import styles from "./index.less";
 
 // 指定画布的id
 let canvasId = "js_canvas";
@@ -28,6 +27,8 @@ const Home: NextPage = (props) => {
   const [curSchema, setCurSchema] = useState<{ [key: string]: any } | null>(
     null
   );
+
+  console.log("curSchema", curSchema, curSchema?.attributes);
 
   const renderLeftSchema = () => {
     return Object.values(Schema).map((item) => {
@@ -100,8 +101,6 @@ const Home: NextPage = (props) => {
               borderRightStyle: "solid",
             }}
           >
-            {/* TODO: 把组件内容渲染在这里 */}
-            {/* <Text text="test 1" /> */}
             {renderLeftSchema()}
           </div>
           <div
@@ -132,7 +131,37 @@ const Home: NextPage = (props) => {
             }}
           >
             {/* TODO: 实现右边栏和可复数加入容器 */}
-            <span> {curSchema !== null && JSON.stringify(curSchema)}</span>
+            {curSchema && (
+              <div>
+                <div className={classNames(styles.common)}>
+                  <span>组件名称：</span>
+                  <span>{curSchema.component}</span>
+                </div>
+                <div className={classNames(styles.common)}>
+                  <span>可配置属性</span>
+                  {Object.keys(curSchema.attributes).map((key) => {
+                    return (
+                      <div key={key} className={classNames(styles.common)}>
+                        <span>{key} :</span>
+                        <span>{curSchema.attributes[key]}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className={classNames(styles.common)}>
+                  <span>公共属性</span>
+                  {Object.keys(curSchema.extra.commonStyle).map((key) => {
+                    const { commonStyle } = curSchema.extra;
+                    return (
+                      <div key={key} className={classNames(styles.common)}>
+                        <span>{key} :</span>
+                        <span>{commonStyle[key]}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             {/* <Editor
               width="280px"
               height="280px"

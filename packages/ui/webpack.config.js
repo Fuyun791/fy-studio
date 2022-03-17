@@ -1,14 +1,17 @@
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   externals: {
     react: "react",
     "react-dom": "react-dom",
+    // "react-is": "react-is",
   },
-  mode: "development",
+  // mode: "development",
+  mode: "production",
   entry: "./src/index.ts",
-  watch: true,
-  devtool: "source-map",
+  // watch: true,
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -18,6 +21,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [new CleanWebpackPlugin()],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },

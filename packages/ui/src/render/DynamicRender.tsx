@@ -1,6 +1,6 @@
 import React from "react";
 import loadable from "@loadable/component";
-import Text from "../components/Text";
+// import Text from "../components/Text";
 // import Editor from "@monaco-editor/react";
 
 export type componentsType = "media" | "base" | "visible";
@@ -17,26 +17,26 @@ const DynamicEngine = (props: DynamicType) => {
   // console.log("item", item);
   const { attributes, extra, event } = item;
 
-  // const OtherComponent = loadable(() => {
-  //   // if (item.component === "Text") {
-  //   //   return import("../components/Text");
-  //   // } else if (item.component === "Button") {
-  //   //   return import("../components/Button");
-  //   // }
-  //   return import(`../components/${item.component}`);
-  // });
+  const OtherComponent = loadable(() => {
+    // if (item.component === "Text") {
+    //   return import("../components/Text");
+    // } else if (item.component === "Button") {
+    //   return import("../components/Button");
+    // }
+    return import(`../components/${item.component}`);
+  });
   // const OtherComponent = loadable(() => import("@/components/Text"));
 
   return (
     <>
-      <Text attributes={attributes} extra={extra} isTpl={isTpl} event={event} />
-      {/* <OtherComponent
+      {/* <Text attributes={attributes} extra={extra} isTpl={isTpl} event={event} /> */}
+      <OtherComponent
         attributes={attributes}
         extra={extra}
         isTpl={isTpl}
         event={event}
         fallback={<div>Loading...</div>}
-      /> */}
+      />
       {/* <Editor
         width="280px"
         height="280px"
