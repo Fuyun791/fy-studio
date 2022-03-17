@@ -25,7 +25,6 @@ const DynamicEngine = (props: DynamicType) => {
     // }
     return import(`../components/${item.component}`);
   });
-  // const OtherComponent = loadable(() => import("@/components/Text"));
 
   return (
     <>

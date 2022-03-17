@@ -27,11 +27,7 @@
       "es2018",
       "esnext"
     ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-    }
+    "paths": {}
   },
   "include": [
     "src"
