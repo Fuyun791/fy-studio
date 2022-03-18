@@ -15,7 +15,7 @@ interface ITextSchema {
 
 const Text = (props: ITextSchema) => {
   const { attributes, extra, isTpl } = props;
-  const [first, setfirst] = useState(123);
+  const [first, setfirst] = useState(123555);
   if (isTpl) {
     return <div>Text Tpl</div>;
   }

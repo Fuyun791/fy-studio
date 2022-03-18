@@ -1,6 +1,6 @@
 import { useMemo, memo, ReactNode, CSSProperties } from "react";
 import { useDrag } from "react-dnd";
-import FyStudio from "@fy-studio-ui";
+import FyStudio from "@fy-studio/ui";
 import styles from "./LeftBox.module.css";
 
 interface TargetBoxProps {

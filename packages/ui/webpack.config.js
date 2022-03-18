@@ -5,10 +5,10 @@ module.exports = {
     react: "react",
     "react-dom": "react-dom",
   },
-  mode: "development",
+  // mode: "development",
   entry: "./src/index.ts",
   watch: true,
-  devtool: "source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {

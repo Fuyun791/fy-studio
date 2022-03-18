@@ -10,7 +10,7 @@ import { useDrop } from "react-dnd";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import _ from "lodash";
-import FyStudio from "@fy-studio-ui";
+import FyStudio from "@fy-studio/ui";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 // import { ItemCallback } from "react-grid-layout";
 // import { connect } from "dva";

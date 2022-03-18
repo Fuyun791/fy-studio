@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { NextPage } from "next";
-import FyStudio from "@fy-studio-ui";
+import FyStudio from "@fy-studio/ui";
 
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
