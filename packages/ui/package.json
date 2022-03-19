@@ -1,6 +1,6 @@
 {
   "name": "@fy-studio/ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,27 +12,14 @@
   "scripts": {
     "build": "webpack",
     "dev": "yarn build -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "resolutions": {
-    "@storybook/{app}/webpack": "^5"
-  },
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/component": "^5.15.2",
-    "@storybook/addon-actions": "^6.4.19",
-    "@storybook/addon-essentials": "^6.4.19",
-    "@storybook/addon-interactions": "^6.4.19",
-    "@storybook/addon-links": "^6.4.19",
-    "@storybook/builder-webpack5": "^6.4.19",
-    "@storybook/manager-webpack5": "^6.4.19",
-    "@storybook/react": "^6.4.19",
-    "@storybook/testing-library": "^0.0.9",
     "@types/loadable__component": "^5.13.4",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
@@ -50,6 +37,7 @@
     "styled-components": "^5.3.3"
   },
   "peerDependencies": {
-    "react": "16.9.0"
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
   }
 }

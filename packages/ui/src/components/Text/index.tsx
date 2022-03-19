@@ -22,19 +22,12 @@ const Text = (props: ITextSchema) => {
 
   const { text, textAlign } = attributes;
 
-  const { width = 375, height = 40 } = extra.commonStyle;
+  const { commonStyle } = extra;
 
   const Temp = styled.button`
     color: "gray";
   `;
 
-  return (
-    <>
-      <span style={{ ...extra, width, height, textAlign, display: "block" }}>
-        {first}
-      </span>
-      <Temp />
-    </>
-  );
+  return <p style={{ ...commonStyle, textAlign }}>{text}</p>;
 };
 export default Text;

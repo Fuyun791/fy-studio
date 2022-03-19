@@ -17,35 +17,23 @@ const DynamicEngine = (props: DynamicType) => {
   // console.log("item", item);
   const { attributes, extra, event } = item;
 
-  // const OtherComponent = loadable(() => {
-  //   // if (item.component === "Text") {
-  //   //   return import("../components/Text");
-  //   // } else if (item.component === "Button") {
-  //   //   return import("../components/Button");
-  //   // }
-  //   return import(`../components/${item.component}`);
-  // });
-  // const OtherComponent = loadable(() => import("@/components/Text"));
+  const OtherComponent = loadable(() => {
+    // if (item.component === "Text") {
+    //   return import("../components/Text");
+    // } else if (item.component === "Button") {
+    //   return import("../components/Button");
+    // }
+    return import(`../components/${item.component}`);
+  });
 
   return (
-    <>
-      <Text attributes={attributes} extra={extra} isTpl={isTpl} event={event} />
-      {/* <OtherComponent
-        attributes={attributes}
-        extra={extra}
-        isTpl={isTpl}
-        event={event}
-        fallback={<div>Loading...</div>}
-      /> */}
-      {/* <Editor
-        width="280px"
-        height="280px"
-        defaultLanguage="javascript"
-        defaultValue="// some comment"
-        // onChange={handleEditorChange}
-        theme="vs-dark"
-      /> */}
-    </>
+    <OtherComponent
+      attributes={attributes}
+      extra={extra}
+      isTpl={isTpl}
+      event={event}
+      fallback={<div>Loading...</div>}
+    />
   );
 };
 

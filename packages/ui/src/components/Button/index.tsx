@@ -20,7 +20,7 @@ const Button = (props: ITextSchema) => {
 
   const { text, textAlign } = attributes;
 
-  const { width = 375, height = 40 } = extra.commonStyle;
+  const { width = 180, height = 40 } = extra.commonStyle;
 
   return <button style={{ ...extra, width, height }}>{text}</button>;
 };
