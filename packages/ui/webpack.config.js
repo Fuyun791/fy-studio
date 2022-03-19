@@ -10,7 +10,6 @@ module.exports = {
   // mode: "development",
   mode: "production",
   entry: "./src/index.ts",
-  // watch: true,
   devtool: "inline-source-map",
   module: {
     rules: [

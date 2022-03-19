@@ -27,24 +27,13 @@ const DynamicEngine = (props: DynamicType) => {
   });
 
   return (
-    <>
-      {/* <Text attributes={attributes} extra={extra} isTpl={isTpl} event={event} /> */}
-      <OtherComponent
-        attributes={attributes}
-        extra={extra}
-        isTpl={isTpl}
-        event={event}
-        fallback={<div>Loading...</div>}
-      />
-      {/* <Editor
-        width="280px"
-        height="280px"
-        defaultLanguage="javascript"
-        defaultValue="// some comment"
-        // onChange={handleEditorChange}
-        theme="vs-dark"
-      /> */}
-    </>
+    <OtherComponent
+      attributes={attributes}
+      extra={extra}
+      isTpl={isTpl}
+      event={event}
+      fallback={<div>Loading...</div>}
+    />
   );
 };
 
