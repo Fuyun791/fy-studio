@@ -1,35 +1,39 @@
-import type { FC } from "react";
-import React, { Suspense } from "react";
+import React from "react";
 import loadable from "@loadable/component";
+// import Text from "../components/Text";
+// import Editor from "@monaco-editor/react";
 
 export type componentsType = "media" | "base" | "visible";
 
 type DynamicType = {
   isTpl: boolean;
-  config: Record<string, any>;
-  type: string;
-  componentsType: componentsType;
+  item: Record<string, any>;
   category: string;
 };
 
 const DynamicEngine = (props: DynamicType) => {
-  const { type, config, category, isTpl } = props;
+  const { item, category, isTpl } = props;
 
-  const temp = {
-    text: "@/components/Text",
-  };
+  // console.log("item", item);
+  const { attributes, extra, event } = item;
 
-  const OtherComponent = loadable(() => import("../components/Text"));
-  // const OtherComponent = loadable(() => import("@/components/Text"));
+  const OtherComponent = loadable(() => {
+    // if (item.component === "Text") {
+    //   return import("../components/Text");
+    // } else if (item.component === "Button") {
+    //   return import("../components/Button");
+    // }
+    return import(`../components/${item.component}`);
+  });
 
   return (
-    <div>
-      <OtherComponent
-        {...config}
-        isTpl={isTpl}
-        fallback={<div>Loading...</div>}
-      />
-    </div>
+    <OtherComponent
+      attributes={attributes}
+      extra={extra}
+      isTpl={isTpl}
+      event={event}
+      fallback={<div>Loading...</div>}
+    />
   );
 };
 
