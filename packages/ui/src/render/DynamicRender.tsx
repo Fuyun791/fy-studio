@@ -1,6 +1,6 @@
 import React from "react";
 import loadable from "@loadable/component";
-import Text from "../components/Text";
+// import Text from "../components/Text";
 // import Editor from "@monaco-editor/react";
 
 export type componentsType = "media" | "base" | "visible";
