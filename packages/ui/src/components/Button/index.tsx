@@ -1,11 +1,13 @@
 import React, { CSSProperties } from "react";
-
+import { StyledButton } from "./styled";
 // import { ITextSchema } from "./schema";
 
 interface ITextSchema {
   attributes: {
     text: string;
-    textAlign: "left";
+    type: "primary" | "text";
+    size: "small" | "medium" | "large";
+    backgroundColor: string;
   };
   event: string;
   extra: { commonStyle: { [key: string]: any } };
@@ -13,15 +15,22 @@ interface ITextSchema {
 }
 
 const Button = (props: ITextSchema) => {
-  const { attributes, extra, isTpl } = props;
+  const { attributes, extra = { commonStyle: {} }, isTpl } = props;
   if (isTpl) {
     return <div>Button Tpl</div>;
   }
 
-  const { text, textAlign } = attributes;
+  const { text, type, size, backgroundColor } = attributes;
 
-  const { width = 180, height = 40 } = extra.commonStyle;
-
-  return <button style={{ ...extra, width, height }}>{text}</button>;
+  return (
+    <StyledButton
+      customType={type}
+      size={size}
+      backgroundColor={backgroundColor}
+      style={{ ...extra.commonStyle }}
+    >
+      {text}
+    </StyledButton>
+  );
 };
 export default Button;

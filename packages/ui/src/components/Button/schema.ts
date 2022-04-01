@@ -1,3 +1,5 @@
+import { primaryColor } from "../../commonStyle";
+
 export interface ITextSchema {
   properties: {
     [key: string]: {
@@ -23,6 +25,48 @@ const Text: ITextSchema = {
       title: "文本内容",
       type: "string",
       default: "文本",
+    },
+    type: {
+      title: "按钮类型",
+      type: "string",
+      default: "primary",
+      xComponent: "radio",
+      enum: [
+        {
+          key: "primary",
+          text: "默认",
+        },
+        {
+          key: "text",
+          text: "文本",
+        },
+      ],
+    },
+    size: {
+      title: "按钮大小",
+      type: "string",
+      default: "medium",
+      xComponent: "radio",
+      enum: [
+        {
+          key: "small",
+          text: "小",
+        },
+        {
+          key: "medium",
+          text: "中",
+        },
+        {
+          key: "large",
+          text: "高",
+        },
+      ],
+    },
+    backgroundColor: {
+      title: "背景颜色",
+      type: "string",
+      default: primaryColor,
+      xComponent: "color",
     },
   },
   events: [],

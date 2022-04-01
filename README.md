@@ -2,16 +2,20 @@
 
 ```bash
 
-lerna run --scope @fy-studio/ui build
+lerna run --scope @fy-studio/ui dev
 
-dir ui
+# dir ui
 yalc publish
 
 # 最好生下版本，不然会更新不上去
 yalc push
 
-target dir
+# target dir
 yalc add (name)
+
+# 组件开发模式
+
+yarn storybook
 
 ```
 
