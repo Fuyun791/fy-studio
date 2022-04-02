@@ -1,33 +1,29 @@
-import React, { CSSProperties, useState } from "react";
-import styled from "styled-components";
+import React from "react";
+import { ICommonAttr } from "@types";
+import { StyledText } from "./styled";
 
-// import { ITextSchema } from "./schema";
-
-interface ITextSchema {
-  attributes: {
-    text: string;
-    textAlign: "left";
-  };
-  event: string;
-  extra: { commonStyle: { [key: string]: any } };
-  isTpl: boolean;
+export interface ITextAttr {
+  text: string;
+  type: "default";
 }
 
-const Text = (props: ITextSchema) => {
-  const { attributes, extra, isTpl } = props;
-  const [first, setfirst] = useState(123555);
+interface ITextProps extends ICommonAttr {
+  attributes: ITextAttr;
+}
+
+const Text = (props: ITextProps) => {
+  const { attributes, extra = { commonStyle: {} }, isTpl } = props;
+
   if (isTpl) {
     return <div>Text Tpl</div>;
   }
 
-  const { text, textAlign } = attributes;
+  const { text, type } = attributes;
 
-  const { commonStyle } = extra;
-
-  const Temp = styled.button`
-    color: "gray";
-  `;
-
-  return <p style={{ ...commonStyle, textAlign }}>{text}</p>;
+  return (
+    <StyledText type={type} style={{ ...extra.commonStyle }}>
+      {text}
+    </StyledText>
+  );
 };
 export default Text;

@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import { StyledButton } from "./styled";
 // import { ITextSchema } from "./schema";
 
-interface ITextSchema {
+interface IButtonSchema {
   attributes: {
     text: string;
     type: "primary" | "text";
@@ -14,7 +14,7 @@ interface ITextSchema {
   isTpl: boolean;
 }
 
-const Button = (props: ITextSchema) => {
+const Button = (props: IButtonSchema) => {
   const { attributes, extra = { commonStyle: {} }, isTpl } = props;
   if (isTpl) {
     return <div>Button Tpl</div>;

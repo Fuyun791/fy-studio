@@ -1,22 +1,7 @@
-export interface ITextSchema {
-  properties: {
-    [key: string]: {
-      title: string;
-      default: string;
-      type: string;
-      [key: string]: any;
-    };
-  };
-  events: { name: string; title: string; function: string }[];
-  meta: {
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-    category: "base" | "other";
-    componentOrder: number;
-  };
-}
+import { ICommonSchema } from "@types";
+
+type ITextSchema = ICommonSchema;
+
 const Text: ITextSchema = {
   properties: {
     text: {
@@ -24,23 +9,27 @@ const Text: ITextSchema = {
       type: "string",
       default: "文本",
     },
-    textAlign: {
-      title: "对齐方式",
+    type: {
+      title: "类型",
       type: "string",
       default: "left",
       xComponent: "radio",
       enum: [
         {
-          key: "left",
-          text: "左对齐",
+          key: "primary",
+          text: "默认",
         },
         {
-          key: "center",
-          text: "居中对齐",
+          key: "success",
+          text: "成功",
         },
         {
-          key: "right",
-          text: "右对齐",
+          key: "warning",
+          text: "警告",
+        },
+        {
+          key: "error",
+          text: "错误",
         },
       ],
     },
@@ -51,8 +40,8 @@ const Text: ITextSchema = {
   //      self: {}
   //   },
   // },
-  // 描述,用于左侧栏
   events: [],
+  // 描述,用于左侧栏
   meta: {
     id: "Text",
     title: "文本",

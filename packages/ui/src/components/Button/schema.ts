@@ -1,25 +1,8 @@
 import { primaryColor } from "../../commonStyle";
+import { ICommonSchema } from "@types";
 
-export interface ITextSchema {
-  properties: {
-    [key: string]: {
-      title: string;
-      default: string;
-      type: string;
-      [key: string]: any;
-    };
-  };
-  events: { name: string; title: string; function: string }[];
-  meta: {
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-    category: "base" | "other";
-    componentOrder: number;
-  };
-}
-const Text: ITextSchema = {
+type IButtonSchema = ICommonSchema;
+const Button: IButtonSchema = {
   properties: {
     text: {
       title: "文本内容",
@@ -80,4 +63,4 @@ const Text: ITextSchema = {
   },
 };
 
-export default Text;
+export default Button;

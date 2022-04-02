@@ -28,8 +28,17 @@
       "esnext"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
+      "@src": [
+        "src/index.ts"
+      ],
+      "@components": [
+        "src/components/"
+      ],
+      "@types": [
+        "@types/"
+      ],
+      "@commonStyle": [
+        "src/commonStyle/"
       ],
     }
   },
