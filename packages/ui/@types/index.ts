@@ -1,3 +1,6 @@
+import { ItemProp } from "../src/render/DynamicRender";
+import { ShowTypeEnum } from "../src/commonModule";
+
 export interface ICommonSchema {
   properties: {
     [key: string]: {
@@ -13,8 +16,9 @@ export interface ICommonSchema {
     title: string;
     description: string;
     icon: string;
-    category: "base" | "other";
+    category: "base" | "other" | "customize";
     componentOrder: number;
+    template?: ItemProp;
   };
 }
 
@@ -22,5 +26,8 @@ export interface ICommonAttr {
   attributes: any;
   event: string;
   extra: { commonStyle: { [key: string]: any } };
-  isTpl: boolean;
+  showType: ShowTypeEnum;
+  id?: string;
+  onClick?: (id: string) => null;
+  // children?: ICommonAttr
 }

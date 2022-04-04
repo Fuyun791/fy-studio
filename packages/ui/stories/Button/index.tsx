@@ -45,7 +45,8 @@ export const Button = ({
   const item = {
     component: "Button",
     attributes: { text: label, type, size, backgroundColor },
+    ...props,
   };
 
-  return <DynamicEngine item={item} category="base" isTpl={false} />;
+  return <DynamicEngine item={item} category="base" showType={1} />;
 };

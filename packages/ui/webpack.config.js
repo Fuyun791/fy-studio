@@ -7,8 +7,8 @@ module.exports = {
     "react-dom": "react-dom",
     // "react-is": "react-is",
   },
-  // mode: "development",
-  mode: "production",
+  mode: "development",
+  // mode: "production",
   entry: "./src/index.ts",
   devtool: "inline-source-map",
   module: {

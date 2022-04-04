@@ -1,34 +1,40 @@
 import React, { ReactNode } from "react";
 import loadable from "@loadable/component";
-// import Text from "../components/Text";
+import { ShowTypeEnum } from "../commonModule";
 // import Editor from "@monaco-editor/react";
 
 export type componentsType = "media" | "base" | "visible";
 
-interface ItemProp {
+export interface ItemProp {
   component: string;
+  id?: string;
+  type?: string;
   attributes?: any;
   extra?: any;
   event?: any[];
   children?: ItemProp[];
+  onClick?: (id: string) => null;
 }
 
 type DynamicType = {
-  isTpl: boolean;
+  showType: ShowTypeEnum;
   item: ItemProp;
   category: string;
   children?: ReactNode;
 };
 
-const RenderEngine = (props: {
-  component: string;
-  attributes: any;
-  extra: any;
-  isTpl: boolean;
-  event: any[];
-  children?: ReactNode;
-}) => {
-  const { component, attributes, extra, isTpl, event, children } = props;
+const DynamicEngine = (props: DynamicType) => {
+  const { item, category, showType, children } = props;
+
+  const {
+    attributes,
+    extra,
+    event,
+    component,
+    id,
+    onClick,
+    // children: schemaChildren,
+  } = item;
 
   const RealComponent = loadable(() => {
     return import(`../components/${component}`);
@@ -36,66 +42,17 @@ const RenderEngine = (props: {
 
   return (
     <RealComponent
+      component={component}
       attributes={attributes}
       extra={extra}
-      isTpl={isTpl}
+      showType={showType}
       event={event}
+      id={id}
+      onClick={onClick}
       fallback={<div>Loading...</div>}
     >
       {children}
     </RealComponent>
-  );
-};
-
-const DynamicEngine = (props: DynamicType) => {
-  const { item, category, isTpl, children } = props;
-
-  console.log("item", item);
-  const {
-    attributes,
-    extra,
-    event,
-    component,
-    children: schemaChildren,
-  } = item;
-
-  if (Array.isArray(schemaChildren)) {
-    return (
-      <RenderEngine
-        component={component}
-        attributes={attributes}
-        extra={extra}
-        isTpl={isTpl}
-        event={event}
-        // fallback={<div>Loading...</div>}
-      >
-        {schemaChildren.map((schema, index) => {
-          return (
-            <DynamicEngine
-              key={`${JSON.stringify(schema)}_${index}`}
-              item={schema}
-              category="base"
-              isTpl={false}
-            >
-              {children}
-            </DynamicEngine>
-          );
-        })}
-      </RenderEngine>
-    );
-  }
-
-  return (
-    <RenderEngine
-      component={component}
-      attributes={attributes}
-      extra={extra}
-      isTpl={isTpl}
-      event={event}
-      // fallback={<div>Loading...</div>}
-    >
-      {children}
-    </RenderEngine>
   );
 };
 

@@ -20,6 +20,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
   label: "Button",
+  id: "aaa",
+  onClick: (id) => console.log("id", id),
 };
 
 export const Secondary = Template.bind({});

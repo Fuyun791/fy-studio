@@ -12,7 +12,7 @@ const Text: ITextSchema = {
     type: {
       title: "类型",
       type: "string",
-      default: "left",
+      default: "primary",
       xComponent: "radio",
       enum: [
         {
