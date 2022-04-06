@@ -8,7 +8,7 @@ const View: ICommonSchema = {
     title: "容器",
     description: "容器组件，兼容小程序和H5平台",
     icon: "../icons/button.svg",
-    category: "base",
+    category: "layout",
     componentOrder: 1,
   },
 };

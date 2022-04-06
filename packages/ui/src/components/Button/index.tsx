@@ -1,5 +1,5 @@
 import { ICommonAttr } from "@types";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, forwardRef } from "react";
 import { ShowTypeEnum } from "../../commonModule";
 import { StyledButton } from "./styled";
 // import { ITextSchema } from "./schema";
@@ -21,7 +21,7 @@ const Button = (props: IButtonSchema) => {
     id,
     onClick,
   } = props;
-  console.log("props", props);
+
   if (showType === ShowTypeEnum.tpl) {
     return <div>Button Tpl</div>;
   }

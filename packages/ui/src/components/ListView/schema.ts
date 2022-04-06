@@ -8,7 +8,7 @@ const ListView: ICommonSchema = {
     title: "列表容器",
     description: "容器组件，兼容小程序和H5平台",
     icon: "../icons/button.svg",
-    category: "base",
+    category: "template",
     componentOrder: 1,
     template: {
       component: "View",

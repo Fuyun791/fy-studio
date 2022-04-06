@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import { ICommonAttr } from "@types";
 import DynamicEngine, { ItemProp } from "../../render/DynamicRender";
 import { ShowTypeEnum } from "../../commonModule";
@@ -12,7 +12,7 @@ interface IViewProps extends ICommonAttr {
   component: string;
   attributes: {
     // 总数据
-    data: IViewProps[];
+    data: { title: string; value: string }[];
   };
   children: any;
 }
@@ -71,13 +71,18 @@ const CustomizeCom = (props: IViewProps) => {
     extra: extra,
     // 简单处理的话，data传的不应该是渲染而是数据
     children: data.map((item) => {
-      // FIXME: 有修改空间
       return {
-        component: item.component,
-        attributes: item.attributes,
-        extra: item.extra,
-        // TODO: 这里的children还没写成嵌套的写法需要修改
-        children: item.children,
+        component: "View",
+        attributes: {},
+        extra: {
+          commonStyle: { backgroundColor: "blue", height: 40, marginTop: 6 },
+        },
+        children: [
+          {
+            component: "Text",
+            attributes: { text: `mock ${item.title} with ${item.value}` },
+          },
+        ],
       };
     }),
     ...showDom,

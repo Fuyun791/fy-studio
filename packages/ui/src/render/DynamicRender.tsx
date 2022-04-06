@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import loadable from "@loadable/component";
 import { ShowTypeEnum } from "../commonModule";
 // import Editor from "@monaco-editor/react";
@@ -7,13 +7,14 @@ export type componentsType = "media" | "base" | "visible";
 
 export interface ItemProp {
   component: string;
-  id?: string;
   type?: string;
   attributes?: any;
   extra?: any;
   event?: any[];
   children?: ItemProp[];
-  onClick?: (id: string) => null;
+  id?: string; // id似乎并不一定就需要
+  // FIXME: 这个得改下需要事件阻止冒泡
+  onClick?: (id: string) => void;
 }
 
 type DynamicType = {

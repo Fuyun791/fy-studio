@@ -12,8 +12,6 @@ export const View = ({ children, ...res }) => {
     ...res,
   };
 
-  console.log("children", children);
-
   return (
     <DynamicEngine item={item} category="base" isTpl={false}>
       {children}

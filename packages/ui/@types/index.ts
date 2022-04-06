@@ -5,7 +5,7 @@ export interface ICommonSchema {
   properties: {
     [key: string]: {
       title: string;
-      default: string;
+      default: any;
       type: string;
       [key: string]: any;
     };
@@ -16,7 +16,7 @@ export interface ICommonSchema {
     title: string;
     description: string;
     icon: string;
-    category: "base" | "other" | "customize";
+    category: "base" | "other" | "customize" | "layout" | "template";
     componentOrder: number;
     template?: ItemProp;
   };

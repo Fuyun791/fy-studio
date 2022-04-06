@@ -1,7 +1,13 @@
 import { ICommonSchema } from "@types";
 
 const CustomizeCom: ICommonSchema = {
-  properties: {},
+  properties: {
+    data: {
+      title: "数据",
+      type: "array",
+      default: [{ title: "标题", value: "内容" }],
+    },
+  },
   events: [],
   meta: {
     id: "CustomizeCom",

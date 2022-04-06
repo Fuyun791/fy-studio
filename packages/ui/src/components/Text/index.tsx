@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { ICommonAttr } from "@types";
 import { ShowTypeEnum } from "../../commonModule";
 import { StyledText } from "./styled";

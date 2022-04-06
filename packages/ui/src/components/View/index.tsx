@@ -1,10 +1,25 @@
-import React, { ReactNode } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import { ICommonAttr } from "@types";
 import { ShowTypeEnum } from "../../commonModule";
 
 interface IViewProps extends ICommonAttr {
   children: ReactNode;
 }
+
+// function commonHoc(WrappedComponent: ReactNode) {
+//   class LogProps extends React.Component {
+//     componentDidUpdate(prevProps) {
+//       console.log("old props:", prevProps);
+//       console.log("new props:", this.props);
+//     }
+
+//     render() {
+//       return <WrappedComponent {...this.props} />;
+//     }
+//   }
+
+//   return LogProps;
+// }
 
 const View = (props: IViewProps) => {
   const {
@@ -21,7 +36,11 @@ const View = (props: IViewProps) => {
 
   if (showType === ShowTypeEnum.showDom) {
     return (
-      <div style={{ ...extra.commonStyle }} onClick={() => onClick(id)}>
+      <div
+        // ref={ref}
+        style={{ ...extra.commonStyle }}
+        onClick={() => onClick(id)}
+      >
         {children}
       </div>
     );
@@ -29,4 +48,5 @@ const View = (props: IViewProps) => {
 
   return <div style={{ ...extra.commonStyle }}>{children}</div>;
 };
+
 export default View;
