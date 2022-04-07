@@ -24,7 +24,7 @@ type DynamicType = {
   children?: ReactNode;
 };
 
-const DynamicEngine = (props: DynamicType) => {
+const DynamicEngine = forwardRef((props: DynamicType, ref) => {
   const { item, category, showType, children } = props;
 
   const {
@@ -49,12 +49,13 @@ const DynamicEngine = (props: DynamicType) => {
       showType={showType}
       event={event}
       id={id}
+      ref={ref}
       onClick={onClick}
       fallback={<div>Loading...</div>}
     >
       {children}
     </RealComponent>
   );
-};
+});
 
 export default DynamicEngine;

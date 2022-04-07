@@ -1,6 +1,6 @@
 {
   "name": "@fy-studio/ui",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/src/index.d.ts",
@@ -14,7 +14,7 @@
     "dev": "yarn build -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Fuyun791",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.7",

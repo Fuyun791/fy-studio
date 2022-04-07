@@ -21,7 +21,7 @@ interface IViewProps extends ICommonAttr {
 //   return LogProps;
 // }
 
-const View = (props: IViewProps) => {
+const View = forwardRef((props: IViewProps, ref) => {
   const {
     extra = { commonStyle: {} },
     children,
@@ -37,7 +37,7 @@ const View = (props: IViewProps) => {
   if (showType === ShowTypeEnum.showDom) {
     return (
       <div
-        // ref={ref}
+        ref={ref}
         style={{ ...extra.commonStyle }}
         onClick={() => onClick(id)}
       >
@@ -47,6 +47,6 @@ const View = (props: IViewProps) => {
   }
 
   return <div style={{ ...extra.commonStyle }}>{children}</div>;
-};
+});
 
 export default View;
