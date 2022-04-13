@@ -8,7 +8,7 @@ export interface ITextAttr {
   type: "default";
 }
 
-interface ITextProps extends ICommonAttr {
+export interface ITextProps extends ICommonAttr {
   attributes: ITextAttr;
 }
 
@@ -31,7 +31,7 @@ const Text = (props: ITextProps) => {
     return (
       <StyledText
         type={type}
-        onClick={() => onClick(id)}
+        onClick={(event) => onClick(id, event)}
         style={{ ...extra.commonStyle }}
       >
         {text}

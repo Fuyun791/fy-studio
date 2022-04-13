@@ -6,7 +6,7 @@ import { ShowTypeEnum } from "../../commonModule";
 
 // const { DynamicEngine } = FyStudio;
 
-interface IViewProps extends ICommonAttr {
+export interface IViewProps extends ICommonAttr {
   id?: string;
   type?: string;
   component: string;
@@ -62,7 +62,10 @@ const CustomizeCom = (props: IViewProps) => {
   let showDom = {};
 
   if (showType === ShowTypeEnum.showDom) {
-    showDom = { id, onClick: (id: string) => onClick(id) };
+    showDom = {
+      id,
+      onClick: (id: string, event?: MouseEvent) => onClick(id, event),
+    };
   }
 
   const item = {

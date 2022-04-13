@@ -1,13 +1,10 @@
 {
   "name": "@fy-studio/ui",
   "version": "0.0.1",
-  "description": "",
   "main": "lib/index.js",
   "types": "lib/src/index.d.ts",
   "files": [
-    "lib",
-    "bin",
-    "template"
+    "lib"
   ],
   "scripts": {
     "build": "webpack",
@@ -16,10 +13,12 @@
   },
   "author": "Fuyun791",
   "license": "ISC",
+  "repository": "git@github.com:Fuyun791/fy-studio.git",
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/component": "^5.15.2",
+    "@types/color": "^3.0.3",
     "@types/loadable__component": "^5.13.4",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
@@ -35,10 +34,15 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "color": "^4.2.3",
     "styled-components": "^5.3.3"
   },
   "peerDependencies": {
     "react": "16.9.0",
     "react-dom": "16.9.0"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "description": ""
 }

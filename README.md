@@ -2,6 +2,8 @@
 
 ```bash
 
+lerna bootstrap
+
 lerna run --scope @fy-studio/ui dev
 
 # dir ui
@@ -16,6 +18,9 @@ yalc add (name)
 # 组件开发模式
 
 yarn storybook
+
+# 以公共的方式发布带@的私有包
+npm publish --access public
 
 ```
 

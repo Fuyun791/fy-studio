@@ -1,7 +1,7 @@
 import React from "react";
 import FyStudio from "@fy-studio/ui";
 
-const { DynamicEngine } = FyStudio;
+const { DynamicEngine, Component } = FyStudio;
 
 interface ButtonProps {
   /**
@@ -23,6 +23,7 @@ interface ButtonProps {
   /**
    * Optional click handler
    */
+  showType: number;
   onClick?: () => null;
 }
 
@@ -34,6 +35,7 @@ export const Button = ({
   size = "medium",
   backgroundColor,
   label,
+  showType = 2,
   ...props
 }: ButtonProps) => {
   const mode = primary
@@ -48,5 +50,5 @@ export const Button = ({
     ...props,
   };
 
-  return <DynamicEngine item={item} category="base" showType={1} />;
+  return <DynamicEngine item={item} category="base" showType={showType} />;
 };

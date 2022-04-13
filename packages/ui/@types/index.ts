@@ -1,5 +1,6 @@
 import { ItemProp } from "../src/render/DynamicRender";
 import { ShowTypeEnum } from "../src/commonModule";
+import { EventHandler } from "react";
 
 export interface ICommonSchema {
   properties: {
@@ -24,10 +25,24 @@ export interface ICommonSchema {
 
 export interface ICommonAttr {
   attributes: any;
-  event: string;
+  events: { [key: string]: any };
+  params?: { [key: string]: any };
   extra: { commonStyle: { [key: string]: any } };
   showType: ShowTypeEnum;
   id?: string;
-  onClick?: (id: string) => null;
+  onClick?: (id: string, event?: MouseEvent) => void;
   // children?: ICommonAttr
 }
+
+// listeners?: {
+//   id: string;
+//   eventName: string;
+//   type: "platform" | "customize";
+//   handler: {
+//     name: string;
+//     module: string;
+//     params: {
+//       [key: string]: any;
+//     };
+//   };
+// }[];

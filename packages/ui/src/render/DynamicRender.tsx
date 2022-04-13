@@ -10,11 +10,22 @@ export interface ItemProp {
   type?: string;
   attributes?: any;
   extra?: any;
-  event?: any[];
+  listeners?: {
+    id: string;
+    eventName: string;
+    type: "platform" | "customize";
+    handler: {
+      name: string;
+      module: string;
+      func?: string;
+      params: {
+        [key: string]: any;
+      };
+    };
+  }[];
   children?: ItemProp[];
   id?: string; // id似乎并不一定就需要
-  // FIXME: 这个得改下需要事件阻止冒泡
-  onClick?: (id: string) => void;
+  onClick?: (id: string, event?: MouseEvent) => void;
 }
 
 type DynamicType = {
@@ -22,32 +33,44 @@ type DynamicType = {
   item: ItemProp;
   category: string;
   children?: ReactNode;
+  env?: string;
 };
 
 const DynamicEngine = forwardRef((props: DynamicType, ref) => {
-  const { item, category, showType, children } = props;
+  const { item, category, showType, children, env = "web" } = props;
 
   const {
     attributes,
     extra,
-    event,
+    listeners,
     component,
     id,
     onClick,
     // children: schemaChildren,
   } = item;
 
-  const RealComponent = loadable(() => {
-    return import(`../components/${component}`);
+  const RealComponent = loadable(({ component }) => {
+    return import(`../components/${component}/${env}`);
   });
 
+  const events: { [key: string]: Function } = {};
+  const params: { [key: string]: any } = {};
+  if (listeners) {
+    listeners.forEach((item) => {
+      events[item.eventName] = Function(
+        `"use strict";return (${item.handler.func})`
+      )();
+      params[item.eventName] = item.handler.params;
+    });
+  }
   return (
     <RealComponent
       component={component}
       attributes={attributes}
       extra={extra}
       showType={showType}
-      event={event}
+      events={events}
+      params={params}
       id={id}
       ref={ref}
       onClick={onClick}

@@ -9,7 +9,9 @@ module.exports = {
   },
   mode: "development",
   // mode: "production",
-  entry: "./src/index.ts",
+  entry: {
+    index: "./src/index.ts",
+  },
   devtool: "inline-source-map",
   module: {
     rules: [
@@ -25,7 +27,8 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "index.js",
+    filename: "[name].js",
+    // chunkFilename: "[name].js",
     path: path.resolve(__dirname, "lib"),
     globalObject: "this",
     umdNamedDefine: true,

@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode } from "react";
 import { ICommonAttr } from "@types";
 import { ShowTypeEnum } from "../../commonModule";
 
-interface IViewProps extends ICommonAttr {
+export interface IViewProps extends ICommonAttr {
   children: ReactNode;
 }
 
@@ -13,6 +13,6 @@ const ListView = forwardRef((props: IViewProps, ref) => {
     return <div>ListView Tpl</div>;
   }
 
-  return <div>如果出现这个说明存在问题</div>;
+  return <div>抱歉，出现了错误，请反馈</div>;
 });
 export default ListView;

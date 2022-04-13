@@ -22,12 +22,28 @@ Primary.args = {
   label: "Button",
   id: "aaa",
   onClick: (id) => console.log("id", id),
+  listeners: [
+    {
+      id: "1",
+      eventName: "customEvent",
+      type: "customize",
+      handler: {
+        name: "abc",
+        module: "customize",
+        func: `function abc({ target, data }) {
+          console.log(target, data);
+        }`,
+        params: { name: "zhang", email: "ssss" },
+      },
+    },
+  ],
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   primary: false,
   label: "Button",
+  showType: 1,
 };
 
 export const Large = Template.bind({});

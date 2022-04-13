@@ -1,5 +1,7 @@
 // import Component from "./components";
-import Schema from "./components";
+import Com from "./components";
 import DynamicEngine from "./render/DynamicRender";
 
-export default { Schema, DynamicEngine };
+const { Schema, Component } = Com;
+
+export default { Schema, DynamicEngine, Component };

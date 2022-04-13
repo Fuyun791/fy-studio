@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode } from "react";
 import { ICommonAttr } from "@types";
 import { ShowTypeEnum } from "../../commonModule";
 
-interface IViewProps extends ICommonAttr {
+export interface IViewProps extends ICommonAttr {
   children: ReactNode;
 }
 
@@ -39,7 +39,7 @@ const View = forwardRef((props: IViewProps, ref) => {
       <div
         ref={ref}
         style={{ ...extra.commonStyle }}
-        onClick={() => onClick(id)}
+        onClick={(event) => onClick(id, event)}
       >
         {children}
       </div>

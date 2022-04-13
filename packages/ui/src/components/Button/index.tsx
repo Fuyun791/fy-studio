@@ -1,10 +1,10 @@
 import { ICommonAttr } from "@types";
-import React, { CSSProperties, forwardRef } from "react";
+import React from "react";
 import { ShowTypeEnum } from "../../commonModule";
 import { StyledButton } from "./styled";
 // import { ITextSchema } from "./schema";
 
-interface IButtonSchema extends ICommonAttr {
+export interface IButtonSchema extends ICommonAttr {
   attributes: {
     text: string;
     type: "primary" | "text";
@@ -19,6 +19,8 @@ const Button = (props: IButtonSchema) => {
     extra = { commonStyle: {} },
     showType,
     id,
+    events,
+    params,
     onClick,
   } = props;
 
@@ -34,7 +36,7 @@ const Button = (props: IButtonSchema) => {
       <StyledButton
         customType={type}
         size={size}
-        onClick={() => onClick(id)}
+        onClick={(event) => onClick(id, event)}
         backgroundColor={backgroundColor}
         style={{ ...extra.commonStyle }}
       >
@@ -48,6 +50,12 @@ const Button = (props: IButtonSchema) => {
       customType={type}
       size={size}
       backgroundColor={backgroundColor}
+      onClick={() =>
+        events?.customEvent({
+          target: { name: "TODO" },
+          data: params?.customEvent,
+        })
+      }
       style={{ ...extra.commonStyle }}
     >
       {text}
